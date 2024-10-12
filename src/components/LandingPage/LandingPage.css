@@ -1,5 +1,5 @@
 .landing-page {
-  background-image: url("./path.avif"); /* Set the background image */
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F000%2F273%2F920%2Flarge_2x%2Fdeep-ocean-background-vector.jpg&f=1&nofb=1&ipt=50d550a575673998475f3986902e716100634cd19c72ac6c96f9781e36d597bd&ipo=images"); /* Set the background image */
   background-size: cover; /* Cover the entire area while maintaining the aspect ratio */
   background-repeat: no-repeat; /* Prevent repeating */
   background-position: center; /* Center the image */
@@ -16,9 +16,8 @@
   padding: 20px;
   background: linear-gradient(
     90deg,
-    #6825c5,
-    #f95f5f,
-    #4707dc
+    #2D06BC,
+    #402E7A
   ); /* Gradient for header */
   color: white;
   z-index: 1; /* Ensure header is on top */
@@ -42,12 +41,19 @@
 }
 
 .login-button {
-  background-color: #86c2f6; /* Lighter teal for login */
+  background-color: #dfae14d1; /* Lighter teal for login */
   color: white;
 }
-
+.login-button:hover {
+  background-color: rgba(126, 102, 22, 0.82); /* Lighter teal for login */
+  color: white;
+}
 .signup-button {
-  background-color: #f07e33; /* Light orange for sign-up */
+  background-color: #77edee; /* Light orange for sign-up */
+  color: #042b61; /* Dark teal text */
+}
+.signup-button:hover {
+  background-color: #337778; /* Light orange for sign-up */
   color: #042b61; /* Dark teal text */
 }
 
@@ -56,12 +62,28 @@
   margin: 50px 0; /* Space above and below the content */
   z-index: 1; /* Ensure content is on top */
   position: relative; /* Position relative to the landing page */
+  color: #ffffff; /* Light text color */
+  font-size: 46px; /* Adjust as needed */
+  font-weight: 700;
+font-family: 'Poppins', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Adds depth */
+  padding: 10px 20px; /* Adds spacing around the text */
+  border-radius: 5px; /* Smooths corners */
 }
 
+
 .title {
-  font-size: 36px;
-  color: #004d40; /* Darker teal for title */
+  color: #ffffff; /* Light text color */
+  font-size: 36px; /* Adjust as needed */
+  font-weight: 700;
+font-family: 'Poppins', sans-serif;
+/*  font-family: 'Nunito', sans-serif;*/
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Adds depth */
+  padding: 10px 20px; /* Adds spacing around the text */
+  /*background-color: rgba(0, 0, 0, 0.5); !* Semi-transparent black background *!*/
+  border-radius: 5px; /* Smooths corners */
 }
+
 
 .description {
   font-size: 18px;
@@ -70,7 +92,18 @@
 
 .cta-button {
   width: 15%; /* Make the button take the full width */
-  background-color: rgb(45, 6, 188);
+  background-color: rgba(223, 174, 20, 0.82);
+  color: white; /* White text color */
+  margin-top: 20px; /* Add space above the button */
+  padding: 1rem; /* Increase padding for larger button */
+  border: none; /* No border */
+  cursor: pointer; /* Change cursor to pointer */
+  text-transform: uppercase; /* Uppercase text */
+  border-radius: 5px; /* Optional: rounded corners */
+}
+.cta-button:hover {
+  width: 15%; /* Make the button take the full width */
+  background-color: rgba(126, 102, 22, 0.82); /* Lighter teal for login */
   color: white; /* White text color */
   margin-top: 20px; /* Add space above the button */
   padding: 1rem; /* Increase padding for larger button */
