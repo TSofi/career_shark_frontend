@@ -1,0 +1,27 @@
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.course-item {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.course-item.finished {
+  background-color: gray;
+  pointer-events: none;
+}
+
+.course-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.course-link h3,
+.course-link p {
+  margin: 0;
+}
