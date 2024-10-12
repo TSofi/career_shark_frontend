@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import { LoginRequestDto } from "./dto/login_dto";
 import { RegisterDto, RegisterResponseDto } from "./dto/register_dto";
+import { GetQuizDto } from "./dto/quiz_dto";
 
 export type ClientResponse<T> = {
   success: boolean;
@@ -87,43 +88,29 @@ export class Client {
       };
     }
   }
+
+  public async getWelcomeQuiz(): Promise<
+    ClientResponse<GetQuizDto | undefined>
+  > {
+    try {
+      const response: AxiosResponse<GetQuizDto> = await this.client.get(
+        `/get_welcome_quiz`
+      );
+
+      console.log(response.data);
+      return {
+        success: true,
+        data: response.data,
+        status: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+
+      return {
+        success: false,
+        data: undefined,
+        status: axiosError.response?.status || 0,
+      };
+    }
+  }
 }
-// import axios from "axios";
-
-// const API_URL = "http://localhost:8080/api/auth/";
-
-// class AuthService {
-//   // Login method to interact with API
-//   login(username: string, password: string) {
-//     return axios
-//       .post(API_URL + "login", {
-//         username,
-//         password,
-//       })
-//       .then((response) => {
-//         if (response.data.token) {
-//           // Store the JWT token and user info in localStorage
-//           localStorage.setItem("jwtToken", response.data.token);
-//           localStorage.setItem("user", JSON.stringify(response.data.user));
-//         }
-//         return response.data;
-//       })
-//       .catch((error) => {
-//         console.error("Login failed:", error);
-//         throw error;
-//       });
-//   }
-
-//   // Logout: Remove user and token from localStorage
-//   logout() {
-//     localStorage.removeItem("jwtToken");
-//     localStorage.removeItem("user");
-//   }
-
-//   // Get the current user from localStorage
-//   getCurrentUser() {
-//     return JSON.parse(localStorage.getItem("user") || "{}");
-//   }
-// }
-
-// export default AuthService;
