@@ -18,7 +18,7 @@ const LandingPage = () => {
           </button>
           <button
             className="signup-button button"
-            onClick={() => navigate("/signup")} // Redirect to SignUpPage
+            onClick={() => navigate("/register")} // Redirect to SignUpPage
           >
             Sign Up
           </button>
