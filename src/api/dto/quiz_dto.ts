@@ -14,3 +14,11 @@ export class Choice {
   option: string = "";
   text: string = "";
 }
+
+export class Answers {
+  answers: string[] = [];
+
+  constructor(answers: string[] = []) {
+    this.answers = answers;
+  }
+}

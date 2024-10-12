@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Quiz.css";
 import useQuizData from "./quizData";
 import { useApi } from "../api/ApiProvider";
+import { Answers } from "../api/dto/quiz_dto";
+import { useNavigate } from "react-router-dom";
 
 type Choice = {
   option: string;
@@ -23,6 +25,7 @@ type QuizProps = {
 const Quiz: React.FC<QuizProps> = ({ name_of_test }) => {
   const apiClient = useApi();
   const [questions, setQuestions] = useState<Question[]>([]);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const fetchQuizData = async () => {
@@ -55,6 +58,9 @@ const Quiz: React.FC<QuizProps> = ({ name_of_test }) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log("User's answers:", answers);
+    const answersToGo = new Answers(answers);
+    apiClient.postWelcomeQuizAnswers(answersToGo);
+    navigate("/");
     // Handle form submission logic here
   };
 
