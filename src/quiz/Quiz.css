@@ -1,5 +1,4 @@
 .wrap {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -22,8 +21,7 @@
 }
 
 .question {
-  display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Align items to the left */
   align-items: center;
   margin-bottom: 1.5rem;
 }
