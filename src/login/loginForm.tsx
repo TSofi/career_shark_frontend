@@ -5,7 +5,6 @@ import { Formik } from "formik";
 import { useCallback, useMemo } from "react";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosInstance } from "axios";
 import { useApi } from "../api/ApiProvider";
 import { useTranslation } from "react-i18next";
 
@@ -50,50 +49,58 @@ function LoginForm() {
   );
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={submit}
-      validationSchema={validationSchema}
-      validateOnBlur
-      validateOnChange
-    >
-      {(formik: any) => (
-        <form
-          id="loginForm"
-          className="Login-form"
-          onSubmit={formik.handleSubmit}
-          noValidate
+    <div className={"login_wrap"}>
+      <div className="login-page">
+        <Formik
+          initialValues={initialValues}
+          onSubmit={submit}
+          validationSchema={validationSchema}
+          validateOnBlur
+          validateOnChange
         >
-          <TextField
-            id="email"
-            label={t("loginPage.email")}
-            variant="outlined"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.email && !!formik.errors.email}
-            helperText={formik.touched.email && formik.errors.email}
-          />
-          <TextField
-            id="password"
-            label={t("loginPage.password")}
-            variant="outlined"
-            type="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.password && !!formik.errors.password}
-            helperText={formik.touched.password && formik.errors.password}
-          />
-          <Button
-            variant="outlined"
-            startIcon={<LoginIcon />}
-            type="submit"
-            disabled={!(formik.isValid && formik.dirty)}
-          >
-            {t("login")}
-          </Button>
-        </form>
-      )}
-    </Formik>
+          {(formik: any) => (
+            <form
+              id="loginForm"
+              className="login-form"
+              onSubmit={formik.handleSubmit}
+              noValidate
+            >
+                <div className="divide_fields">
+              <TextField
+                id="email"
+                label={t("email")}
+                variant="outlined"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.email && !!formik.errors.email}
+                helperText={formik.touched.email && formik.errors.email}
+                className="form-field"
+              />
+                </div>
+              <TextField
+                id="password"
+                label={t("password")}
+                variant="outlined"
+                type="password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.password && !!formik.errors.password}
+                helperText={formik.touched.password && formik.errors.password}
+                className="form-field"
+              />
+              <Button
+                variant="outlined"
+                startIcon={<LoginIcon />}
+                type="submit"
+                disabled={!(formik.isValid && formik.dirty)}
+              >
+                {t("login")}
+              </Button>
+            </form>
+          )}
+        </Formik>
+      </div>
+    </div>
   );
 }
 
