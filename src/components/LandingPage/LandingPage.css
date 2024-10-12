@@ -1,0 +1,91 @@
+.landing-page {
+  background-image: url("./path.avif"); /* Set the background image */
+  background-size: cover; /* Cover the entire area while maintaining the aspect ratio */
+  background-repeat: no-repeat; /* Prevent repeating */
+  background-position: center; /* Center the image */
+  min-height: 100vh; /* Ensure at least full viewport height */
+  font-family: "Arial", sans-serif; /* Your preferred font */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange children in a column */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(
+    90deg,
+    #6825c5,
+    #f95f5f,
+    #4707dc
+  ); /* Gradient for header */
+  color: white;
+  z-index: 1; /* Ensure header is on top */
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.auth-buttons {
+  display: flex;
+}
+
+.auth-buttons button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button {
+  background-color: #86c2f6; /* Lighter teal for login */
+  color: white;
+}
+
+.signup-button {
+  background-color: #f07e33; /* Light orange for sign-up */
+  color: #042b61; /* Dark teal text */
+}
+
+.content {
+  text-align: center;
+  margin: 50px 0; /* Space above and below the content */
+  z-index: 1; /* Ensure content is on top */
+  position: relative; /* Position relative to the landing page */
+}
+
+.title {
+  font-size: 36px;
+  color: #004d40; /* Darker teal for title */
+}
+
+.description {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  width: 15%; /* Make the button take the full width */
+  background-color: rgb(45, 6, 188);
+  color: white; /* White text color */
+  margin-top: 20px; /* Add space above the button */
+  padding: 1rem; /* Increase padding for larger button */
+  border: none; /* No border */
+  cursor: pointer; /* Change cursor to pointer */
+  text-transform: uppercase; /* Uppercase text */
+  border-radius: 5px; /* Optional: rounded corners */
+}
+
+/* Keyframes for moving gradient */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%; /* Start position */
+  }
+  100% {
+    background-position: 100% 50%; /* End position */
+  }
+}
