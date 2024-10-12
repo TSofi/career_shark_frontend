@@ -5,12 +5,12 @@ export class GetQuizDto {
   questions: Question[] = [];
 }
 
-class Question {
+export class Question {
   question_text: string = "";
   choices: Choice[] = [];
 }
 
-class Choice {
+export class Choice {
   option: string = "";
   text: string = "";
 }

@@ -1,5 +1,4 @@
 import { useState, useCallback } from "react";
-import axios from "axios";
 import { GetQuizDto } from "../api/dto/quiz_dto";
 import { useApi } from "../api/ApiProvider";
 
