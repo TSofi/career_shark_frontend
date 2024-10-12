@@ -1,9 +1,58 @@
-.Register-form {
-  padding: 5rem;
-  margin-top: 10%;
+.login_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F000%2F273%2F920%2Flarge_2x%2Fdeep-ocean-background-vector.jpg&f=1&nofb=1&ipt=50d550a575673998475f3986902e716100634cd19c72ac6c96f9781e36d597bd&ipo=images");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+}
+
+.login-page {
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.login-form {
+  background: rgba(205, 225, 236, 0.84); /* Dark shade overlay */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: white !important;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border: none;
+  border-radius: 5px;
+}
+
+.divide_fields {
+  margin-bottom: 1rem; /* Adjust the margin as needed */
+}
+
+.login-form button {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: #dfae14d1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.login-form button:hover {
+  background-color: rgba(126, 102, 22, 0.82);
 }
