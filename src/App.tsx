@@ -5,28 +5,7 @@ import LoginForm from "./login/loginForm";
 import RegisterForm from "./register/registerForm";
 import Quiz from "./quiz/Quiz";
 import CourseList from "./components/CourseList/CourseList";
-
-const questions = [
-  {
-    question_text: "Do you enjoy working with databases?",
-    choices: [
-      { option: "a", text: "Yes, I love it" },
-      { option: "b", text: "Not really" },
-      { option: "c", text: "I can manage both frontend and backend tasks" },
-    ],
-    correct_option: "a",
-  },
-  {
-    question_text: "Do you enjoy working with databases?",
-    choices: [
-      { option: "a", text: "Yes, I love it" },
-      { option: "b", text: "Not really" },
-      { option: "c", text: "I can manage both frontend and backend tasks" },
-    ],
-    correct_option: "a",
-  },
-  // Add other questions here
-];
+import GamePage from "./game_main/gamePage";
 
 const App = () => {
   return (
@@ -46,7 +25,7 @@ const App = () => {
           }
         />
         <Route path="/courses" element={<CourseList />} />
-
+        <Route path="/game" element={<GamePage />} />
       </Routes>
     </Router>
   );
