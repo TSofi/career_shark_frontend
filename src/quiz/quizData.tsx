@@ -14,12 +14,13 @@ const useQuizData = () => {
     try {
       const response = await apiClient.getWelcomeQuiz();
       setData(response.data);
+      console.log(data);
     } catch (err) {
       setError("Failed to fetch loans");
     } finally {
       setLoading(false);
     }
-  }, [apiClient]);
+  }, [apiClient, data]);
 
   return { data, fetchQuizData, loading, error };
 };
