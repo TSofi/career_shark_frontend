@@ -3,7 +3,9 @@ import Cookies from "universal-cookie";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import { LoginRequestDto } from "./dto/login_dto";
 import { RegisterDto, RegisterResponseDto } from "./dto/register_dto";
-import { Answers, GetQuizDto } from "./dto/quiz_dto";
+import { GetQuizDto } from "./dto/quiz_dto";
+  import { GetCoursesDto } from "./dto/courses_dto";
+
 
 export type ClientResponse<T> = {
   success: boolean;
@@ -114,29 +116,28 @@ export class Client {
     }
   }
 
-  public async postWelcomeQuizAnswers(
-    data: Answers
-  ): Promise<ClientResponse<string | undefined>> {
-    try {
-      const response: AxiosResponse<string> = await this.client.post(
-        `/post_welcome_quiz_answers`,
-        data
-      );
 
-      console.log(response.data);
-      return {
-        success: true,
-        data: response.data,
-        status: response.status,
-      };
-    } catch (error) {
-      const axiosError = error as AxiosError<Error>;
+public async getCourses(level: number): Promise<ClientResponse<GetCoursesDto | undefined>> {
+  try {
+    const response: AxiosResponse<GetCoursesDto> = await this.client.get(
+      `/api/lessons/level/${level}`
+    );
+    console.log('get courses egaged');
+    console.log(response.data);
+    return {
+      success: true,
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    const axiosError = error as AxiosError<Error>;
 
-      return {
-        success: false,
-        data: undefined,
-        status: axiosError.response?.status || 0,
-      };
-    }
+    return {
+      success: false,
+      data: undefined,
+      status: axiosError.response?.status || 0,
+    };
   }
+}
+
 }

@@ -4,6 +4,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import LoginForm from "./login/loginForm";
 import RegisterForm from "./register/registerForm";
 import Quiz from "./quiz/Quiz";
+import CourseList from "./components/CourseList/CourseList";
 
 const questions = [
   {
@@ -44,6 +45,8 @@ const App = () => {
             />
           }
         />
+        <Route path="/courses" element={<CourseList />} />
+
       </Routes>
     </Router>
   );
