@@ -91,9 +91,10 @@ font-family: 'Poppins', sans-serif;
 }
 
 .cta-button {
-  width: 15%; /* Make the button take the full width */
+  width: 30%; /* Make the button take the full width */
   background-color: rgba(223, 174, 20, 0.82);
   color: white; /* White text color */
+  font-weight: bold;
   margin-top: 20px; /* Add space above the button */
   padding: 1rem; /* Increase padding for larger button */
   border: none; /* No border */
@@ -102,9 +103,11 @@ font-family: 'Poppins', sans-serif;
   border-radius: 5px; /* Optional: rounded corners */
 }
 .cta-button:hover {
-  width: 15%; /* Make the button take the full width */
+  width: 30%; /* Make the button take the full width */
   background-color: rgba(126, 102, 22, 0.82); /* Lighter teal for login */
   color: white; /* White text color */
+    font-weight: bold;
+
   margin-top: 20px; /* Add space above the button */
   padding: 1rem; /* Increase padding for larger button */
   border: none; /* No border */
