@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Quiz.css';
 
 type Choice = {
   option: string;
@@ -34,28 +35,32 @@ const Quiz: React.FC<QuizProps> = ({ name_of_test, questions }) => {
   };
 
   return (
-    <div className="quiz">
-      <h1>{name_of_test}</h1>
-      <form onSubmit={handleSubmit}>
-        {questions.map((question, index) => (
-          <div key={index} className="question">
-            <p>{question.question_text}</p>
-            {question.choices.map((choice) => (
-              <label key={choice.option}>
-                <input
-                  type="radio"
-                  name={`question-${index}`}
-                  value={choice.option}
-                  checked={answers[index] === choice.option}
-                  onChange={() => handleChange(index, choice.option)}
-                />
-                {choice.text}
-              </label>
-            ))}
-          </div>
-        ))}
-        <button type="submit">Submit</button>
-      </form>
+    <div className="wrap">
+      <div className="quiz">
+        <h1>{name_of_test}</h1>
+        <form onSubmit={handleSubmit}>
+          {questions.map((question, index) => (
+            <div key={index} className="question">
+              <p>{question.question_text}</p>
+              <div className="choice-field">
+                {question.choices.map((choice) => (
+                  <label key={choice.option}>
+                    <input
+                      type="radio"
+                      name={`question-${index}`}
+                      value={choice.option}
+                      checked={answers[index] === choice.option}
+                      onChange={() => handleChange(index, choice.option)}
+                    />
+                    {choice.text}
+                  </label>
+                ))}
+              </div>
+            </div>
+          ))}
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 };
