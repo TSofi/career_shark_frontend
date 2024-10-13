@@ -78,3 +78,9 @@
   border-radius: 5px;
   margin: 0 10px;
 }
+
+.popup {
+  padding-top: 10px; /* Add padding on top */
+  margin-top: 20px; /* Add extra space below */
+  transform: translateX(-50%); /* Center the popup horizontally */
+}

@@ -13,8 +13,8 @@ const GamePage: React.FC = () => {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const buttonRect = event.currentTarget.getBoundingClientRect();
     setPopupPosition({
-      top: buttonRect.bottom,
-      left: buttonRect.left,
+      top: buttonRect.bottom + 30, // Add padding on top and extra space below
+      left: buttonRect.left + buttonRect.width / 2, // Center the popup horizontally
     });
     setShowTable(true);
   };
