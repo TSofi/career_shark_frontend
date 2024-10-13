@@ -1,36 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Quiz from "./courseTest";
-
-interface GetCourseDto {
-  id: number;
-  link: string;
-}
+import { useApi } from "../api/ApiProvider";
+import { Course } from "../api/dto/courses_dto";
 
 interface CoursePageProps {
   courseId: string;
 }
 
 const CoursePage: React.FC<CoursePageProps> = ({ courseId }) => {
-  const [course, setCourse] = useState<GetCourseDto | null>(null);
+  const [course, setCourse] = useState<Course | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const apiClient = useApi();
 
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await fetch(`/api/courses/${courseId}`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch course information");
+        const response = await apiClient.getCourse(courseId);
+        if (response && response.data) {
+          setCourse(response.data);
         }
-        const data: GetCourseDto = await response.json();
-        setCourse(data);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred");
-        }
-      } finally {
+        setLoading(false);
+      } catch (error) {
+        setError("Failed to fetch course data");
         setLoading(false);
       }
     };
@@ -38,13 +30,7 @@ const CoursePage: React.FC<CoursePageProps> = ({ courseId }) => {
     fetchCourse();
   }, [courseId]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  const courseData = course; // Create a constant to hold the course data
 
   return (
     <div>
@@ -56,7 +42,8 @@ const CoursePage: React.FC<CoursePageProps> = ({ courseId }) => {
       ) : (
         <div>No course information available</div>
       )}
-      <Quiz courseId={courseId} />
+      <Quiz courseId={courseId} courseData={courseData} />{" "}
+      {/* Pass the course data to Quiz */}
     </div>
   );
 };
