@@ -7,6 +7,7 @@ import Quiz from "./quiz/Quiz";
 import CourseList from "./components/CourseList/CourseList";
 import GamePage from "./game_main/gamePage";
 import Leaderboard from "./components/Leaderboard";
+import MyProfile from "./components/my_profile";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/courses" element={<CourseList />} />
         <Route path="/game" element={<GamePage />} />
         <Route path="/board" element={<Leaderboard />} />
+        <Route path="/profile" element={<MyProfile />} />
       </Routes>
     </Router>
   );

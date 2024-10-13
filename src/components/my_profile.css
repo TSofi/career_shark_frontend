@@ -1,0 +1,61 @@
+/* my_profile.css */
+
+.profile-body {
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F000%2F273%2F920%2Flarge_2x%2Fdeep-ocean-background-vector.jpg&f=1&nofb=1&ipt=50d550a575673998475f3986902e716100634cd19c72ac6c96f9781e36d597bd&ipo=images"); /* Set the background image */
+  background-size: cover; /* Cover the entire area while maintaining the aspect ratio */
+  background-repeat: no-repeat; /* Prevent repeating */
+  background-position: center; /* Center the image */
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+}
+
+.profile-header h1 {
+  font-size: 2em;
+  margin: 0;
+  color: white;
+}
+
+.profile-details {
+  font-size: 1.5em;
+  margin-top: 20px;
+  color: white;
+}
+
+.profile-details h2 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.profile-details p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: white;
+}
+
+.profile-footer {
+  margin-top: 30px;
+}
+
+.profile-footer button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.3em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-footer button:hover {
+  background-color: #0056b3;
+}
