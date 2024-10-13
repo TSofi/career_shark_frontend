@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./gamePage.css";
+import CourseList from "../components/CourseList/CourseList";
 
 const GamePage: React.FC = () => {
   const [showTable, setShowTable] = useState(false);
@@ -36,20 +37,15 @@ const GamePage: React.FC = () => {
   return (
     <div className="game-page">
       <div className="button-container">
-        {[...Array(7)].map(
-          (
-            _,
-            index // Changed 6 to 7
-          ) => (
-            <button
-              key={index}
-              className={`round-button game-button game-button-${index}`}
-              onClick={handleClick}
-            >
-              Button {index + 1}
-            </button>
-          )
-        )}
+        {[...Array(9)].map((_, index) => (
+          <button
+            key={index}
+            className={`round-button game-button game-button-${index}`}
+            onClick={handleClick}
+          >
+            {index < 3 ? "Easy" : index < 6 ? "Medium" : "Hard"}
+          </button>
+        ))}
       </div>
       {showTable && (
         <div
@@ -61,27 +57,7 @@ const GamePage: React.FC = () => {
             position: "absolute",
           }}
         >
-          <table className="game-table">
-            <thead>
-              <tr>
-                <th>Header 1</th>
-                <th>Header 2</th>
-                <th>Header 3</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Data 1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-              </tr>
-              <tr>
-                <td>Data 4</td>
-                <td>Data 5</td>
-                <td>Data 6</td>
-              </tr>
-            </tbody>
-          </table>
+          <CourseList />
         </div>
       )}
     </div>
