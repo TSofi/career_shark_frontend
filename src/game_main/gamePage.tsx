@@ -40,10 +40,17 @@ const GamePage: React.FC = () => {
     navigate("/board");
   };
 
+  const handleMyProfileClick = () => {
+    navigate("/profile");
+  };
+
   return (
     <div className="game-page">
       <button className="leaderboard-button" onClick={handleLeaderboardClick}>
         Leaderboards
+      </button>
+      <button className="my-profiel-bytton" onClick={handleMyProfileClick}>
+        My Profile
       </button>
       <div className="button-container">
         {[...Array(9)].map((_, index) => (
