@@ -16,6 +16,13 @@ interface RoleJwtPayload extends JwtPayload {
   role?: string;
 }
 
+export interface LeaderboardUser {
+  user_id: string;
+  nickname: string;
+  score: number;
+  courses: string[];
+}
+
 export class Client {
   private baseUrl = "https://career-shark-backend.onrender.com";
   private client: AxiosInstance;
