@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useApi } from "../../api/ApiProvider";
 import { Course } from "../../api/dto/courses_dto";
 import "./CourseList.css";
+import CoursePage from "../../course/coursePage";
 
 const CourseList: React.FC = () => {
   const apiClient = useApi();
@@ -36,6 +37,7 @@ const CourseList: React.FC = () => {
           <div
             key={course._id}
             className={`course-item ${course.finished ? "finished" : ""}`}
+            onClick={() => <CoursePage courseId={String(course._id)} />}
           >
             <a
               href={course.finished ? undefined : course.link_to_resources}

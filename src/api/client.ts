@@ -4,7 +4,7 @@ import { JwtPayload, jwtDecode } from "jwt-decode";
 import { LoginRequestDto } from "./dto/login_dto";
 import { RegisterDto, RegisterResponseDto } from "./dto/register_dto";
 import { Answers, GetQuizDto } from "./dto/quiz_dto";
-import {Course, GetCoursesDto} from "./dto/courses_dto";
+import { Course, GetCoursesDto } from "./dto/courses_dto";
 
 export type ClientResponse<T> = {
   success: boolean;
@@ -141,28 +141,80 @@ export class Client {
     }
   }
 
-public async getCourses(level: number): Promise<ClientResponse<Course[] | undefined>> {
-  try {
-    const response: AxiosResponse<Course[]> = await this.client.get(
-      `/lessons/level/${level}`
-    );
+  public async getCourseQuiz(
+    lesson_id: string
+  ): Promise<ClientResponse<GetQuizDto | undefined>> {
+    try {
+      const response: AxiosResponse<GetQuizDto> = await this.client.get(
+        `/lessons/${lesson_id}/quiz`
+      );
 
-    console.log("API Response:", response.data);
-    return {
-      success: true,
-      data: response.data,
-      status: response.status,
-    };
-  } catch (error) {
-    const axiosError = error as AxiosError<Error>;
+      console.log(response.data);
+      return {
+        success: true,
+        data: response.data,
+        status: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
 
-    return {
-      success: false,
-      data: undefined,
-      status: axiosError.response?.status || 0,
-    };
+      return {
+        success: false,
+        data: undefined,
+        status: axiosError.response?.status || 0,
+      };
+    }
   }
-}
 
+  public async postCourseQuizAnswers(
+    lesson_id: string,
+    data: Answers
+  ): Promise<ClientResponse<GetQuizDto | undefined>> {
+    try {
+      const response: AxiosResponse<GetQuizDto> = await this.client.post(
+        `/lessons/${lesson_id}/quiz`,
+        data
+      );
 
+      console.log(response.data);
+      return {
+        success: true,
+        data: response.data,
+        status: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+
+      return {
+        success: false,
+        data: undefined,
+        status: axiosError.response?.status || 0,
+      };
+    }
+  }
+
+  public async getCourses(
+    level: number
+  ): Promise<ClientResponse<Course[] | undefined>> {
+    try {
+      const response: AxiosResponse<Course[]> = await this.client.get(
+        `/lessons/level/${level}`
+      );
+
+      console.log("API Response:", response.data);
+      return {
+        success: true,
+        data: response.data,
+        status: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+
+      return {
+        success: false,
+        data: undefined,
+        status: axiosError.response?.status || 0,
+      };
+    }
+  }
 }
