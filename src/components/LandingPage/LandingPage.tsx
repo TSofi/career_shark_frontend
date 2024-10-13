@@ -5,6 +5,10 @@ import "./LandingPage.css";
 const LandingPage = () => {
   const navigate = useNavigate(); // Initialize navigate
 
+  const handleChoosePathClick = () => {
+    navigate("/quiz");
+  };
+
   return (
     <div className="landing-page">
       <header className="header">
@@ -30,7 +34,7 @@ const LandingPage = () => {
         <p className="description">
           New here? Take this test to choose your career path.
         </p>
-        <button className="cta-button">Choose path</button>
+<button className="cta-button" onClick={() => navigate("/quiz")}>Choose path</button>
       </div>
     </div>
   );

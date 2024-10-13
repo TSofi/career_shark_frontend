@@ -37,7 +37,7 @@ const CourseList: React.FC = () => {
           <div
             key={course._id}
             className={`course-item ${course.finished ? "finished" : ""}`}
-            onClick={() => <CoursePage courseId={String(course._id)} />}
+            onClick={() => <CoursePage  />} // to powinno suck course id somehow and use it later, maybe put it localstorea??
           >
             <a
               href={course.finished ? undefined : course.link_to_resources}
