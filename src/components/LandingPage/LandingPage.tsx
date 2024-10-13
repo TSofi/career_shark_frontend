@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
-
+import logo from "./nowe_logo.png"; // Import the image from the same directory
 const LandingPage = () => {
   const navigate = useNavigate(); // Initialize navigate
 
@@ -30,11 +30,14 @@ const LandingPage = () => {
       </header>
 
       <div className="content">
+        <img src={logo} alt="Logo" className="logo-image" /> {/* Add the image */}
         <h1 className="title">Welcome to Shark Carrier!</h1>
         <p className="description">
           New here? Take this test to choose your career path.
         </p>
-<button className="cta-button" onClick={() => navigate("/quiz")}>Choose path</button>
+        <button className="cta-button" onClick={() => navigate("/quiz")}>
+          Choose path
+        </button>
       </div>
     </div>
   );
