@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./gamePage.css";
+// import "./gamePage.css";
 
 const GamePage: React.FC = () => {
   const [showTable, setShowTable] = useState(false);
