@@ -28,22 +28,19 @@ const CoursePage: React.FC<CoursePageProps> = ({ courseId }) => {
     };
 
     fetchCourse();
-  }, [courseId]);
-
-  const courseData = course; // Create a constant to hold the course data
+  }, [apiClient, courseId]);
 
   return (
     <div>
       {course ? (
         <div>
           <h1>Course Information</h1>
-          <p>{course.link}</p>
+          <p>{course.link_to_resources}</p>
         </div>
       ) : (
         <div>No course information available</div>
       )}
-      <Quiz courseId={courseId} courseData={courseData} />{" "}
-      {/* Pass the course data to Quiz */}
+      <Quiz courseId={courseId} />
     </div>
   );
 };
