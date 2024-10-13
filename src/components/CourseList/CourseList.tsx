@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useApi } from "../../api/ApiProvider";
 import { Course } from "../../api/dto/courses_dto";
 import "./CourseList.css";
-import CoursePage from "../../course/coursePage";
 
 interface CourseListProps {
   level: number;
@@ -11,6 +11,7 @@ interface CourseListProps {
 const CourseList: React.FC<CourseListProps> = ({ level }) => {
   const apiClient = useApi();
   const [courses, setCourses] = useState<Course[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -37,6 +38,7 @@ const CourseList: React.FC<CourseListProps> = ({ level }) => {
   const handleCourseClick = (courseId: string) => {
     console.log("Clicked course ID:", courseId);
     localStorage.setItem("selectedCourseId", courseId); // Store the course ID in local storage
+    navigate(`/course/${courseId}`); // Navigate to the course detail page
   };
 
   return (

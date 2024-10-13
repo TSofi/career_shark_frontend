@@ -1,14 +1,15 @@
 import { createContext, useContext } from "react";
 import { Client } from "./client";
 
-const ApiContext = createContext(new Client());
+const ApiContext = createContext<Client | null>(null);
 
-export default function ApiProvider({
-  children,
-}: {
+interface ApiProviderProps {
   children: React.ReactNode;
-}) {
-  const apiClient = new Client();
+  client?: Client;
+}
+
+export default function ApiProvider({ children, client }: ApiProviderProps) {
+  const apiClient = client || new Client();
 
   return (
     <ApiContext.Provider value={apiClient}>{children}</ApiContext.Provider>
@@ -16,5 +17,9 @@ export default function ApiProvider({
 }
 
 export function useApi() {
-  return useContext(ApiContext);
+  const context = useContext(ApiContext);
+  if (!context) {
+    throw new Error("useApi must be used within an ApiProvider");
+  }
+  return context;
 }
