@@ -31,8 +31,9 @@ function RegisterForm() {
     (values: FormValues, formik: any) => {
       apiClient.register(values).then((response) => {
         if (response.success) {
-          navigate("/");
+          navigate("/game");
         } else {
+          formik.setFieldError("email", "Registration failed");
         }
       });
     },
@@ -44,7 +45,13 @@ function RegisterForm() {
       yup.object({
         email: yup.string().required(t("loginPage.emailCantBeEmpty")),
         nickname: yup.string().required("nickname can't be empty"),
-        DoB: yup.string().required("DoB can't be empty"),
+        DoB: yup
+          .string()
+          .required("DoB can't be empty")
+          .matches(
+            /^\d{2}-\d{2}-\d{4}$/,
+            "Date of birth must be in the format DD-MM-YYYY"
+          ),
         password: yup
           .string()
           .required(t("loginPage.passwordCantBeEmpty"))
@@ -102,7 +109,10 @@ function RegisterForm() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   error={formik.touched.DoB && !!formik.errors.DoB}
-                  helperText={formik.touched.DoB && formik.errors.DoB}
+                  helperText={
+                    (formik.touched.DoB && formik.errors.DoB) ||
+                    "Accepted format: DD-MM-YYYY"
+                  }
                   className="form-field"
                 />
               </div>

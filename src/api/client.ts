@@ -147,31 +147,30 @@ export class Client {
   }
 
   public async postWelcomeQuizAnswers(
-    data: Answers
-  ): Promise<ClientResponse<string | undefined>> {
-    try {
-      const response: AxiosResponse<string> = await this.client.post(
-        `/post_welcome_quiz_answers`,
-        data
-      );
+  data: Answers
+): Promise<ClientResponse<{ message: string } | null>> {
+  try {
+    const response: AxiosResponse<{ message: string }> = await this.client.post(
+      `/post_welcome_quiz_answers`,
+      data
+    );
 
-      console.log(response.data);
-      return {
-        success: true,
-        data: response.data,
-        status: response.status,
-      };
-    } catch (error) {
-      const axiosError = error as AxiosError<Error>;
+    console.log(response.data);
+    return {
+      success: true,
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    const axiosError = error as AxiosError<Error>;
 
-      return {
-        success: false,
-        data: undefined,
-        status: axiosError.response?.status || 0,
-      };
-    }
+    return {
+      success: false,
+      data: null,
+      status: axiosError.response?.status || 0,
+    };
   }
-
+}
   public async getCourseQuiz(
     lesson_id: string
   ): Promise<ClientResponse<GetQuizDto | undefined>> {
@@ -298,4 +297,6 @@ export class Client {
       };
     }
   }
+
+
 }

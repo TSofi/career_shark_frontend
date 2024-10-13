@@ -55,14 +55,26 @@ const Quiz: React.FC<QuizProps> = ({ name_of_test }) => {
     setAnswers(newAnswers);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log("User's answers:", answers);
-    const answersToGo = new Answers(answers);
-    apiClient.postWelcomeQuizAnswers(answersToGo);
-    navigate("/");
-    // Handle form submission logic here
-  };
+  const handleSubmit = async (event: React.FormEvent) => {
+  event.preventDefault();
+  console.log("User's answers:", answers);
+  const answersToGo = new Answers(answers);
+
+  try {
+    const response = await apiClient.postWelcomeQuizAnswers(answersToGo);
+    if (response.success && response.data) {
+      alert(`${response.data.message}`);
+    } else {
+      alert("Failed to submit answers.");
+    }
+  } catch (error) {
+    console.error("Error submitting answers:", error);
+    alert("An error occurred while submitting your answers.");
+  }
+
+  navigate("/register");
+};
+
 
   return (
     <div className="wrap">
