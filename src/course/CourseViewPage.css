@@ -1,0 +1,23 @@
+.course-view-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.course-details, .course-quiz {
+  width: 48%; /* Adjust as needed */
+}
+
+.course-details {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-quiz {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

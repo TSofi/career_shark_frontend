@@ -10,6 +10,7 @@ import Leaderboard from "./components/Leaderboard";
 import MyProfile from "./components/my_profile";
 import ApiProvider from "./api/ApiProvider";
 import CourseDetail from "./components/CourseDetail/CourseDetial";
+import CourseViewPage from "./course/CourseViewPage";
 
 const App = () => {
   return (
@@ -32,7 +33,7 @@ const App = () => {
           <Route path="/game" element={<GamePage />} />
           <Route path="/board" element={<Leaderboard />} />
           <Route path="/profile" element={<MyProfile />} />
-          <Route path="/course/:courseId" element={<CourseDetail />} />
+          <Route path="/course/:courseId" element={<CourseViewPage />} /> {/* Update route */}
         </Routes>
       </Router>
     </ApiProvider>
