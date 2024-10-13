@@ -224,4 +224,27 @@ export class Client {
       };
     }
   }
+
+
+public async getUsersLeaderboard(): Promise<ClientResponse<LeaderboardUser[] | undefined>> {
+  try {
+    const response: AxiosResponse<LeaderboardUser[]> = await this.client.get(`/leaderboard`);
+
+    console.log("API Response:", response.data);
+    return {
+      success: true,
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    const axiosError = error as AxiosError<Error>;
+
+    return {
+      success: false,
+      data: undefined,
+      status: axiosError.response?.status || 0,
+    };
+  }
+}
+
 }
