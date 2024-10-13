@@ -17,6 +17,17 @@
   text-align: center;
   color: white;
 }
+.text-background {
+  background-color: rgba(
+    211,
+    211,
+    211,
+    0.7
+  ); /* Light grey background with some transparency */
+  padding: 0.5px; /* Add some padding for spacing */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  margin: 7px 0; /* Space between different text backgrounds */
+}
 
 .profile-header h1 {
   font-size: 2em;
@@ -47,15 +58,60 @@
 }
 
 .profile-footer button {
-  background-color: #007bff;
+  background: linear-gradient(
+    270deg,
+    #1900ffba,
+    #00bfffc7
+  ); /* Sea-themed gradient */
+  background-size: 400% 400%; /* Large background for smooth movement */
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  font-size: 1.3em;
+  padding: 15px 30px; /* Make it larger */
+  font-size: 1.5em; /* Increase font size */
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition */
+  animation: gradientMove 5s ease infinite; /* Gradient movement */
 }
 
 .profile-footer button:hover {
-  background-color: #0056b3;
+  transform: scale(1.05); /* Slightly larger on hover */
+  background: linear-gradient(
+    270deg,
+    #00bfff,
+    #007bff
+  ); /* Lighter shade on hover */
+}
+
+/* Gradient movement animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.lives-container {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.lives-bar {
+  background-color: #eee;
+  border-radius: 5px;
+  height: 20px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.lives-fill {
+  background-color: #007bff; /* Change to your preferred color */
+  height: 100%;
+  transition: width 0.3s ease; /* Smooth transition for the fill */
+  border-radius: 5px 0 0 5px; /* Rounded corners on the left */
 }

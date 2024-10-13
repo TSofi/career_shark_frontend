@@ -49,26 +49,46 @@ const MyProfile: React.FC = () => {
         <AccountCircleIcon style={{ fontSize: 100 }} />
       </div>
       <div className="profile-details">
-        <p>
-          <strong>Email:</strong> {user!.email}
-        </p>
-        <p>
-          <strong>Date of Birth:</strong> {user!.DoB}
-        </p>
-        <p>
-          <strong>Nickname:</strong> {user!.nickname}
-        </p>
-        <p>
-          <strong>Lives:</strong> {user!.lives}
-        </p>
-        <p>
-          <strong>Points:</strong> {user!.points}
-        </p>
-        <p>
-          <strong>Finished Courses:</strong> {user!.finished_courses.length}
-        </p>
+        <div className="text-background">
+          <p>
+            <strong>Email:</strong> {user!.email}
+          </p>
+          <p>
+            <strong>Date of Birth:</strong> {user!.DoB}
+          </p>
+          <p>
+            <strong>Nickname:</strong> {user!.nickname}
+          </p>
+        </div>
+
+        {/* Lives Bar Component */}
+        <div className="lives-container">
+          {user && user.lives !== undefined && (
+            <>
+              <div className="lives-bar">
+                <div
+                  className="lives-fill"
+                  style={{ width: `${(user.lives / 5) * 100}%` }} // Assuming max lives is 5
+                ></div>
+              </div>
+              <p>{user.lives} Lives Remaining</p>
+            </>
+          )}
+        </div>
+
+        <div className="text-background">
+          <p>
+            <strong>Points:</strong> {user!.points}
+          </p>
+          <p>
+            <strong>Finished Courses:</strong> {user!.finished_courses.length}
+          </p>
+        </div>
       </div>
-      <button onClick={() => navigate("/game")}>Go to Game</button>
+
+      <div className="profile-footer">
+        <button onClick={() => navigate("/game")}>Go to Game</button>
+      </div>
     </div>
   );
 };

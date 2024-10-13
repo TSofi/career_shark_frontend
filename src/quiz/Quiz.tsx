@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Quiz.css";
-import useQuizData from "./quizData";
 import { useApi } from "../api/ApiProvider";
 import { Answers } from "../api/dto/quiz_dto";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +17,6 @@ type Question = {
 
 type QuizProps = {
   name_of_test: string;
-  to_pass: number;
-  num_of_questions: number;
 };
 
 const Quiz: React.FC<QuizProps> = ({ name_of_test }) => {
@@ -45,6 +42,7 @@ const Quiz: React.FC<QuizProps> = ({ name_of_test }) => {
 
     fetchQuizData();
   }, [apiClient]);
+
   const [answers, setAnswers] = useState<string[]>(
     Array(questions.length).fill("")
   );
@@ -56,25 +54,24 @@ const Quiz: React.FC<QuizProps> = ({ name_of_test }) => {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
-  event.preventDefault();
-  console.log("User's answers:", answers);
-  const answersToGo = new Answers(answers);
+    event.preventDefault();
+    console.log("User's answers:", answers);
+    const answersToGo = new Answers(answers);
 
-  try {
-    const response = await apiClient.postWelcomeQuizAnswers(answersToGo);
-    if (response.success && response.data) {
-      alert(`${response.data.message}`);
-    } else {
-      alert("Failed to submit answers.");
+    try {
+      const response = await apiClient.postWelcomeQuizAnswers(answersToGo);
+      if (response.success && response.data) {
+        alert(`${response.data.message}`);
+        // Navigate to the game page after successfully submitting answers
+        navigate("/game");
+      } else {
+        alert("Failed to submit answers.");
+      }
+    } catch (error) {
+      console.error("Error submitting answers:", error);
+      alert("An error occurred while submitting your answers.");
     }
-  } catch (error) {
-    console.error("Error submitting answers:", error);
-    alert("An error occurred while submitting your answers.");
-  }
-
-  navigate("/register");
-};
-
+  };
 
   return (
     <div className="wrap">
