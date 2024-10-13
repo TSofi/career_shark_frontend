@@ -15,12 +15,19 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.course-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
 .course-name {
   font-weight: bold;
   font-size: 1.5em;
 }
 
-.course-level, .course-resources, .course-points {
+.course-description, .course-resources, .course-points {
   margin: 10px 0;
 }
 
@@ -33,9 +40,21 @@
   text-decoration: underline;
 }
 
-.course-quiz {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.difficulty-bar {
+  width: 100%;
+  height: 100px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.difficulty-level {
+  width: 100%;
+  background-color: #4caf50;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+  color: white;
+  position: absolute;
+  bottom: 0;
 }

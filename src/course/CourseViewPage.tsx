@@ -43,12 +43,12 @@ const CourseViewPage: React.FC = () => {
     <div className="course-view-page">
       <div className="course-details">
         <img src={course.img_url} alt={course.name} className="course-image" />
-        <h2>{course.name}</h2>
-        <p>{course.description}</p>
-        <p>
+        <h2 className="course-name">{course.name}</h2>
+        <p className="course-description">{course.description}</p>
+        <p className="course-resources">
           Resources: <a href={course.link_to_resources}>{course.link_to_resources}</a>
         </p>
-        <p>Value in points: {course.value_points}</p>
+        <p className="course-points">Value in points: {course.value_points}</p>
         <div className="difficulty-bar">
           <div
             className="difficulty-level"
