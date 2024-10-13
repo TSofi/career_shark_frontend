@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useApi } from "../../api/ApiProvider";
+import { Course } from "../../api/dto/courses_dto";
 import "./CourseList.css";
-
-type Course = {
-  name: string;
-  level: string;
-  url: string;
-  finished: number;
-};
 
 const CourseList: React.FC = () => {
   const apiClient = useApi();
@@ -18,7 +12,10 @@ const CourseList: React.FC = () => {
       try {
         const response = await apiClient.getCourses(0); // Pass the level as an argument
         if (response && response.data) {
-          setCourses(response.data.courses); // Access the courses array from the response
+          console.log("API Response:", response.data);
+          setCourses(response.data || []); // Ensure courses is an array
+        } else {
+          console.log("No data in response");
         }
       } catch (error) {
         console.error("Failed to fetch courses:", error);
@@ -28,22 +25,30 @@ const CourseList: React.FC = () => {
     fetchCourses();
   }, [apiClient]);
 
+  useEffect(() => {
+    console.log("Courses state:", courses);
+  }, [courses]);
+
   return (
     <div className="course-list">
-      {courses.map((course, index) => (
-        <div
-          key={index}
-          className={`course-item ${course.finished ? "finished" : ""}`}
-        >
-          <a
-            href={course.finished ? undefined : course.url}
-            className="course-link"
+      {courses.length > 0 ? (
+        courses.map((course) => (
+          <div
+            key={course._id}
+            className={`course-item ${course.finished ? "finished" : ""}`}
           >
-            <h3>{course.name}</h3>
-            <p>Level: {course.level}</p>
-          </a>
-        </div>
-      ))}
+            <a
+              href={course.finished ? undefined : course.link_to_resources}
+              className="course-link"
+            >
+              <h3>{course.name}</h3>
+              <p>Level: {course.level}</p>
+            </a>
+          </div>
+        ))
+      ) : (
+        <p>No courses available</p>
+      )}
     </div>
   );
 };

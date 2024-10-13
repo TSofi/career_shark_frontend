@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./gamePage.css"; // Make sure to create and import a CSS file for styling
+import React, { useEffect, useRef, useState } from "react";
+import "./gamePage.css";
 
 const GamePage: React.FC = () => {
   const [showTable, setShowTable] = useState(false);
