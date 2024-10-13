@@ -24,7 +24,7 @@ function LoginForm() {
     (values: FormValues, formik: any) => {
       apiClient.login(values).then((response) => {
         if (response.success) {
-          navigate("/");
+          navigate("/game");
         } else {
           formik.setFieldError(
             "password",

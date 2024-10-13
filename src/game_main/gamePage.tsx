@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./gamePage.css";
 import CourseList from "../components/CourseList/CourseList";
 
@@ -6,6 +7,7 @@ const GamePage: React.FC = () => {
   const [showTable, setShowTable] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const popupRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const buttonRect = event.currentTarget.getBoundingClientRect();
@@ -34,8 +36,15 @@ const GamePage: React.FC = () => {
     };
   }, [showTable]);
 
+  const handleLeaderboardClick = () => {
+    navigate("/board");
+  };
+
   return (
     <div className="game-page">
+      <button className="leaderboard-button" onClick={handleLeaderboardClick}>
+        Leaderboards
+      </button>
       <div className="button-container">
         {[...Array(9)].map((_, index) => (
           <button
