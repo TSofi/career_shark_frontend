@@ -15,6 +15,24 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.course-name {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.course-level, .course-resources, .course-points {
+  margin: 10px 0;
+}
+
+.course-resources a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.course-resources a:hover {
+  text-decoration: underline;
+}
+
 .course-quiz {
   background-color: #fff;
   padding: 20px;

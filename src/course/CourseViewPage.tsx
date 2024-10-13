@@ -41,7 +41,9 @@ const CourseViewPage: React.FC = () => {
       <div className="course-details">
         <h2>{course.name}</h2>
         <p>Level: {course.level}</p>
-        {/* Add more course details as needed */}
+        <p>Resources: {course.link_to_resources}</p>
+        <p>Value in points: {course.value_points}</p>
+
       </div>
       <div className="course-quiz">
         <Quiz
