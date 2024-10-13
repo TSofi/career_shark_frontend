@@ -43,7 +43,7 @@ const GamePage: React.FC = () => {
           ) => (
             <button
               key={index}
-              className={`round-button button-${index}`}
+              className={`round-button game-button game-button-${index}`}
               onClick={handleClick}
             >
               Button {index + 1}

@@ -1,4 +1,4 @@
-button {
+.game-button {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -11,10 +11,10 @@ button {
   margin: 2%; /* Adjust the value as needed */
 }
 
-button:nth-child(odd) {
+.game-button:nth-child(odd) {
   margin-top: 60px; /* Adjust the value as needed */
 }
 
-button:nth-child(even) {
+.game-button:nth-child(even) {
   margin-top: 120px; /* Adjust the value as needed */
 }
