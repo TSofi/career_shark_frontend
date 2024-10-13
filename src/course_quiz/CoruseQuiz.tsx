@@ -59,16 +59,16 @@ const CourseQuiz: React.FC<CourseQuizProps> = ({ courseId }) => {
     try {
       const response = await apiClient.postCourseQuizAnswers(courseId, answersToGo);
       if (response.success && response.data) {
-        setMessage(response.data.message);
+        alert(response.data.message);
       } else {
-        setMessage("Failed to submit answers.");
+        alert("Failed to submit answers.");
       }
     } catch (error) {
       console.error("Error submitting answers:", error);
-      setMessage("An error occurred while submitting your answers.");
+      alert("An error occurred while submitting your answers.");
     }
 
-    navigate("/");
+    navigate("/game");
   };
 
   return (

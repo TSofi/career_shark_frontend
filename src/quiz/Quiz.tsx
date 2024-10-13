@@ -17,6 +17,8 @@ type Question = {
 
 type QuizProps = {
   name_of_test: string;
+  to_pass: number;
+  num_of_questions: number;
 };
 
 const Quiz: React.FC<QuizProps> = ({ name_of_test }) => {
@@ -54,25 +56,36 @@ const Quiz: React.FC<QuizProps> = ({ name_of_test }) => {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log("User's answers:", answers);
-    const answersToGo = new Answers(answers);
+  event.preventDefault();
+  console.log("User's answers:", answers);
 
-    try {
-      const response = await apiClient.postWelcomeQuizAnswers(answersToGo);
-      if (response.success && response.data) {
-        alert(`${response.data.message}`);
-        // Navigate to the game page after successfully submitting answers
-        navigate("/game");
-      } else {
-        alert("Failed to submit answers.");
-      }
-    } catch (error) {
-      console.error("Error submitting answers:", error);
-      alert("An error occurred while submitting your answers.");
+  // Convert all answers to lowercase
+  const lowercaseAnswers = answers.map(answer => answer.toLowerCase());
+  console.log("Lowercase answers:", lowercaseAnswers); // Log to verify conversion
+
+  // Check if all answers are lowercase before proceeding
+  if (lowercaseAnswers.some(answer => answer !== answer.toLowerCase())) {
+    console.error("Some answers are not in lowercase.");
+    return;
+  }
+
+  const answersToGo = new Answers(lowercaseAnswers);
+
+  try {
+    console.log(answersToGo);
+    const response = await apiClient.postWelcomeQuizAnswers(answersToGo);
+    if (response.success && response.data) {
+      alert(`${response.data.message}`);
+      // Navigate to the game page after successfully submitting answers
+      navigate("/register");
+    } else {
+      alert("Failed to submit answers.");
     }
-  };
-
+  } catch (error) {
+    console.error("Error submitting answers:", error);
+    alert("An error occurred while submitting your answers.");
+  }
+};
   return (
     <div className="wrap">
       <div className="quiz">
