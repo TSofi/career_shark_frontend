@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import "./LogoutButton.css"; // Ensure this file is imported
 
 const LogoutButton: React.FC = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const LogoutButton: React.FC = () => {
   };
 
   return (
-    <Button variant="outlined" onClick={handleLogout}>
+    <Button className="logout-button" onClick={handleLogout}>
       Logout
     </Button>
   );

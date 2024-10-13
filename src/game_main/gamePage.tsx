@@ -46,40 +46,42 @@ const GamePage: React.FC = () => {
   };
 
   return (
-      <div className="game-page">
+    <div className="game-page">
+      <div className="top-bar">
         <button className="leaderboard-button" onClick={handleLeaderboardClick}>
           Leaderboards
         </button>
-        <button className="my-profiel-bytton" onClick={handleMyProfileClick}>
+        <button className="my-profile-button" onClick={handleMyProfileClick}>
           My Profile
         </button>
-          <LogoutButton/>
-          <div className="button-container">
-            {[...Array(9)].map((_, index) => (
-                <button
-                    key={index}
-                    className={`round-button game-button game-button-${index}`}
-                    onClick={handleClick}
-                >
-                  {index < 3 ? "Easy" : index < 6 ? "Medium" : "Hard"}
-                </button>
-            ))}
-          </div>
-          {showTable && (
-              <div
-                  className="popup"
-                  ref={popupRef}
-                  style={{
-                    top: popupPosition.top,
-                    left: popupPosition.left,
-                    position: "absolute",
-                  }}
-              >
-                <CourseList/>
-              </div>
-          )}
+        <LogoutButton />
       </div>
-);
+      <div className="button-container">
+        {[...Array(9)].map((_, index) => (
+          <button
+            key={index}
+            className={`round-button game-button game-button-${index}`}
+            onClick={handleClick}
+          >
+            {index < 3 ? "Easy" : index < 6 ? "Medium" : "Hard"}
+          </button>
+        ))}
+      </div>
+      {showTable && (
+        <div
+          className="popup"
+          ref={popupRef}
+          style={{
+            top: popupPosition.top,
+            left: popupPosition.left,
+            position: "absolute",
+          }}
+        >
+          <CourseList />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default GamePage;
