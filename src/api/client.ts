@@ -4,7 +4,7 @@ import { JwtPayload, jwtDecode } from "jwt-decode";
 import { LoginRequestDto } from "./dto/login_dto";
 import { RegisterDto, RegisterResponseDto } from "./dto/register_dto";
 import { Answers, GetQuizDto } from "./dto/quiz_dto";
-import { Course, GetCoursesDto } from "./dto/courses_dto";
+import { Course } from "./dto/courses_dto";
 import { GetUserDto } from "./dto/user_dto";
 
 export type ClientResponse<T> = {
@@ -155,6 +155,8 @@ export class Client {
       data
     );
 
+
+
     console.log(response.data);
     return {
       success: true,
@@ -199,29 +201,31 @@ export class Client {
   public async postCourseQuizAnswers(
     lesson_id: string,
     data: Answers
-  ): Promise<ClientResponse<GetQuizDto | undefined>> {
+  ): Promise<ClientResponse<{ message: string } | null>> {
     try {
-      const response: AxiosResponse<GetQuizDto> = await this.client.post(
+      const response: AxiosResponse<{ message: string }>= await this.client.post(
         `/lessons/${lesson_id}/quiz`,
         data
       );
 
-      console.log(response.data);
-      return {
-        success: true,
-        data: response.data,
-        status: response.status,
-      };
-    } catch (error) {
-      const axiosError = error as AxiosError<Error>;
 
-      return {
-        success: false,
-        data: undefined,
-        status: axiosError.response?.status || 0,
-      };
-    }
+
+    console.log(response.data);
+    return {
+      success: true,
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    const axiosError = error as AxiosError<Error>;
+
+    return {
+      success: false,
+      data: null,
+      status: axiosError.response?.status || 0,
+    };
   }
+}
 
   public async getCourse(
   course_id: string

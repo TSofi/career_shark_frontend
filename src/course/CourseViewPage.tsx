@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useApi } from "../api/ApiProvider";
 import { Course } from "../api/dto/courses_dto";
-import Quiz from "../quiz/Quiz";
+import CourseQuiz from "../course_quiz/CoruseQuiz";
 import "./CourseViewPage.css";
 
 const CourseViewPage: React.FC = () => {
@@ -12,13 +12,14 @@ const CourseViewPage: React.FC = () => {
 
   useEffect(() => {
     const fetchCourse = async () => {
-      if (!courseId) {
+      const id = courseId || "";
+      if (!id) {
         console.error("Course ID is undefined");
         return;
       }
 
       try {
-        const response = await apiClient.getCourse(courseId);
+        const response = await apiClient.getCourse(id);
         if (response && response.data) {
           setCourse(response.data);
         } else {
@@ -36,21 +37,29 @@ const CourseViewPage: React.FC = () => {
     return <p>Loading...</p>;
   }
 
+  const difficultyLevels = ["Easy", "Medium", "Hard"];
+
   return (
     <div className="course-view-page">
       <div className="course-details">
+        <img src={course.img_url} alt={course.name} className="course-image" />
         <h2>{course.name}</h2>
-        <p>Level: {course.level}</p>
-        <p>Resources: {course.link_to_resources}</p>
+        <p>{course.description}</p>
+        <p>
+          Resources: <a href={course.link_to_resources}>{course.link_to_resources}</a>
+        </p>
         <p>Value in points: {course.value_points}</p>
-
+        <div className="difficulty-bar">
+          <div
+            className="difficulty-level"
+            style={{ height: `${(course.level + 1) * 33.33}%` }}
+          >
+            {difficultyLevels[course.level]}
+          </div>
+        </div>
       </div>
       <div className="course-quiz">
-        <Quiz
-          name_of_test="Course Quiz"
-          to_pass={0}
-          num_of_questions={10}
-        />
+        <CourseQuiz courseId={courseId || ""} />
       </div>
     </div>
   );
