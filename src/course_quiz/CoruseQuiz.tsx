@@ -54,7 +54,12 @@ const CourseQuiz: React.FC<CourseQuizProps> = ({ courseId }) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     console.log("User's answers:", answers);
-    const answersToGo = new Answers(answers);
+
+    // Convert all answers to lowercase
+    const lowercaseAnswers = answers.map(answer => answer.toLowerCase());
+    console.log("Lowercase answers:", lowercaseAnswers); // Log to verify conversion
+
+    const answersToGo = new Answers(lowercaseAnswers);
 
     try {
       const response = await apiClient.postCourseQuizAnswers(courseId, answersToGo);

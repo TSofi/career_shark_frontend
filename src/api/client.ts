@@ -204,7 +204,7 @@ export class Client {
   ): Promise<ClientResponse<{ message: string } | null>> {
     try {
       const response: AxiosResponse<{ message: string }>= await this.client.post(
-        `/lessons/${lesson_id}/quiz`,
+        `/lessons/${lesson_id}/finish_course_submit_quiz`,
         data
       );
 
