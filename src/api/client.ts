@@ -42,34 +42,34 @@ export class Client {
   }
 
   public async login(
-    data: LoginRequestDto
-  ): Promise<ClientResponse<undefined | Error>> {
-    try {
-      const response: AxiosResponse = await this.client.post("/login", data);
+  data: LoginRequestDto
+): Promise<ClientResponse<undefined | Error>> {
+  try {
+    const response: AxiosResponse = await this.client.post("/login", data);
 
-      const decoded = jwtDecode<JwtPayload>(response.data.access_token);
-      console.log(decoded);
+    const decoded = jwtDecode<JwtPayload>(response.data.access_token);
+    console.log(decoded);
 
-      if (decoded.exp) {
-        this.cookies.set("token", response.data.access_token, {
-          expires: new Date(decoded.exp * 1000),
-        });
-      }
-      return {
-        success: true,
-        data: undefined,
-        status: response.status,
-      };
-    } catch (error) {
-      const axiosError = error as AxiosError<Error>;
-
-      return {
-        success: false,
-        data: axiosError.response?.data,
-        status: axiosError.response?.status || 0,
-      };
+    if (decoded.exp) {
+      this.cookies.set("token", response.data.access_token, {
+        expires: new Date(decoded.exp * 1000),
+      });
     }
+    return {
+      success: true,
+      data: undefined,
+      status: response.status,
+    };
+  } catch (error) {
+    const axiosError = error as AxiosError<Error>;
+
+    return {
+      success: false,
+      data: axiosError.response?.data,
+      status: axiosError.response?.status || 0,
+    };
   }
+}
 
   public logout(): void {
     this.cookies.remove("token");
