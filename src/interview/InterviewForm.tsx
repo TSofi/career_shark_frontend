@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useApi } from "../api/ApiProvider";
 import "./InterviewForm.css";
 
 const InterviewForm: React.FC = () => {
+  const apiClient = useApi();
   const [question, setQuestion] = useState<string>("");
   const [response, setResponse] = useState<string>("");
   const [feedback, setFeedback] = useState<string>("");
 
   const fetchQuestion = async () => {
     try {
-      const result = await axios.get("/get_interview_question");
-      setQuestion(result.data.question);
+      const result = await apiClient.getInterviewQuestion();
+      if (result.success && result.data) {
+        setQuestion(result.data.question);
+      }
     } catch (error) {
       console.error("Failed to fetch question:", error);
     }
@@ -18,11 +21,10 @@ const InterviewForm: React.FC = () => {
 
   const submitResponse = async () => {
     try {
-      const result = await axios.post("/get_interview_response", {
-        question,
-        response,
-      });
-      setFeedback(result.data.feedback);
+      const result = await apiClient.postInterviewResponse({ question, response });
+      if (result.success && result.data) {
+        setFeedback(result.data.feedback);
+      }
     } catch (error) {
       console.error("Failed to submit response:", error);
     }
