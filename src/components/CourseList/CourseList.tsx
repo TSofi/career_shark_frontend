@@ -34,6 +34,11 @@ const CourseList: React.FC<CourseListProps> = ({ level }) => {
     console.log("Courses state:", courses);
   }, [courses]);
 
+  const handleCourseClick = (courseId: string) => {
+    console.log("Clicked course ID:", courseId);
+    localStorage.setItem("selectedCourseId", courseId); // Store the course ID in local storage
+  };
+
   return (
     <div className="course-list">
       {courses.length > 0 ? (
@@ -41,11 +46,12 @@ const CourseList: React.FC<CourseListProps> = ({ level }) => {
           <div
             key={course._id}
             className={`course-item ${course.finished ? "finished" : ""}`}
-            onClick={() => <CoursePage />} // to powinno suck course id somehow and use it later, maybe put it localstorea??
+            onClick={() => handleCourseClick(course._id)}
           >
             <a
               href={course.finished ? undefined : course.link_to_resources}
               className="course-link"
+              onClick={(e) => e.preventDefault()} // Prevent navigation to the course link
             >
               <h3>{course.name}</h3>
               <p>Level: {course.level}</p>
