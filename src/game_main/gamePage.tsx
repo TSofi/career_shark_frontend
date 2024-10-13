@@ -36,20 +36,15 @@ const GamePage: React.FC = () => {
   return (
     <div className="game-page">
       <div className="button-container">
-        {[...Array(7)].map(
-          (
-            _,
-            index // Changed 6 to 7
-          ) => (
-            <button
-              key={index}
-              className={`round-button game-button game-button-${index}`}
-              onClick={handleClick}
-            >
-              Button {index + 1}
-            </button>
-          )
-        )}
+        {[...Array(9)].map((_, index) => (
+          <button
+            key={index}
+            className={`round-button game-button game-button-${index}`}
+            onClick={handleClick}
+          >
+            Button {index + 1}
+          </button>
+        ))}
       </div>
       {showTable && (
         <div
