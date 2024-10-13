@@ -303,4 +303,39 @@ export class Client {
   }
 
 
+  public async getInterviewQuestion(): Promise<ClientResponse<{ question: string } | undefined>> {
+    try {
+      const response: AxiosResponse<{ question: string }> = await this.client.get("/get_interview_question");
+      return {
+        success: true,
+        data: response.data,
+        status: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: undefined,
+        status: axiosError.response?.status || 0,
+      };
+    }
+  }
+
+  public async postInterviewResponse(data: { question: string; response: string }): Promise<ClientResponse<{ feedback: string } | undefined>> {
+    try {
+      const response: AxiosResponse<{ feedback: string }> = await this.client.post("/get_interview_response", data);
+      return {
+        success: true,
+        data: response.data,
+        status: response.status,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<Error>;
+      return {
+        success: false,
+        data: undefined,
+        status: axiosError.response?.status || 0,
+      };
+    }
+  }
 }

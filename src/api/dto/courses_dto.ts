@@ -7,6 +7,7 @@ export class Course {
   link_to_resources: string = "";
   value_points: number = 0;
   finished: number = 0;
+
 }
 
 export class GetCoursesDto {
