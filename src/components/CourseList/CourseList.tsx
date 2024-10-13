@@ -4,14 +4,18 @@ import { Course } from "../../api/dto/courses_dto";
 import "./CourseList.css";
 import CoursePage from "../../course/coursePage";
 
-const CourseList: React.FC = () => {
+interface CourseListProps {
+  level: number;
+}
+
+const CourseList: React.FC<CourseListProps> = ({ level }) => {
   const apiClient = useApi();
   const [courses, setCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await apiClient.getCourses(0); // Pass the level as an argument
+        const response = await apiClient.getCourses(level); // Pass the level as an argument
         if (response && response.data) {
           console.log("API Response:", response.data);
           setCourses(response.data || []); // Ensure courses is an array
@@ -24,7 +28,7 @@ const CourseList: React.FC = () => {
     };
 
     fetchCourses();
-  }, [apiClient]);
+  }, [apiClient, level]);
 
   useEffect(() => {
     console.log("Courses state:", courses);
@@ -37,7 +41,7 @@ const CourseList: React.FC = () => {
           <div
             key={course._id}
             className={`course-item ${course.finished ? "finished" : ""}`}
-            onClick={() => <CoursePage  />} // to powinno suck course id somehow and use it later, maybe put it localstorea??
+            onClick={() => <CoursePage />} // to powinno suck course id somehow and use it later, maybe put it localstorea??
           >
             <a
               href={course.finished ? undefined : course.link_to_resources}

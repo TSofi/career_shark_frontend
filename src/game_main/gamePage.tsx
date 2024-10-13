@@ -7,15 +7,17 @@ import LogoutButton from "../components/LogoutButton";
 const GamePage: React.FC = () => {
   const [showTable, setShowTable] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
+  const [difficultyLevel, setDifficultyLevel] = useState<number | null>(null);
   const popupRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>, level: number) => {
     const buttonRect = event.currentTarget.getBoundingClientRect();
     setPopupPosition({
       top: buttonRect.bottom + 30, // Add padding on top and extra space below
       left: buttonRect.left + buttonRect.width / 2, // Center the popup horizontally
     });
+    setDifficultyLevel(level);
     setShowTable(true);
   };
 
@@ -61,13 +63,13 @@ const GamePage: React.FC = () => {
           <button
             key={index}
             className={`round-button game-button game-button-${index}`}
-            onClick={handleClick}
+            onClick={(event) => handleClick(event, index < 3 ? 0 : index < 6 ? 1 : 2)}
           >
             {index < 3 ? "Easy" : index < 6 ? "Medium" : "Hard"}
           </button>
         ))}
       </div>
-      {showTable && (
+      {showTable && difficultyLevel !== null && (
         <div
           className="popup"
           ref={popupRef}
@@ -77,7 +79,7 @@ const GamePage: React.FC = () => {
             position: "absolute",
           }}
         >
-          <CourseList />
+          <CourseList level={difficultyLevel} />
         </div>
       )}
     </div>

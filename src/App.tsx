@@ -26,7 +26,7 @@ const App = () => {
             />
           }
         />
-        <Route path="/courses" element={<CourseList />} />
+        {/*<Route path="/courses" element={<CourseList />} />*/}
         <Route path="/game" element={<GamePage />} />
         <Route path="/board" element={<Leaderboard />} />
         <Route path="/profile" element={<MyProfile />} />
