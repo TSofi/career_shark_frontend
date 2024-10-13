@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useApi } from "../api/ApiProvider";
 import { Course } from "../api/dto/courses_dto";
 import CourseQuiz from "../course_quiz/CoruseQuiz";
+import InterviewForm from "../interview/InterviewForm";
 import "./CourseViewPage.css";
 
 const CourseViewPage: React.FC = () => {
@@ -59,7 +60,11 @@ const CourseViewPage: React.FC = () => {
         </div>
       </div>
       <div className="course-quiz">
-        <CourseQuiz courseId={courseId || ""} />
+        {courseId === "670b86688a15b18fce68e80a" ? (
+          <InterviewForm />
+        ) : (
+          <CourseQuiz courseId={courseId || ""} />
+        )}
       </div>
     </div>
   );
