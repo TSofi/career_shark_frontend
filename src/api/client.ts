@@ -16,6 +16,14 @@ interface RoleJwtPayload extends JwtPayload {
   role?: string;
 }
 
+export interface LeaderboardUser {
+  user_id: string;
+  nickname: string;
+  score: number;
+  courses: string[];
+}
+
+
 export class Client {
   private baseUrl = "https://career-shark-backend.onrender.com";
   private client: AxiosInstance;
@@ -164,5 +172,25 @@ public async getCourses(level: number): Promise<ClientResponse<Course[] | undefi
   }
 }
 
+public async getUsersLeaderboard(): Promise<ClientResponse<LeaderboardUser[] | undefined>> {
+  try {
+    const response: AxiosResponse<LeaderboardUser[]> = await this.client.get(`/leaderboard`);
+
+    console.log("API Response:", response.data);
+    return {
+      success: true,
+      data: response.data,
+      status: response.status,
+    };
+  } catch (error) {
+    const axiosError = error as AxiosError<Error>;
+
+    return {
+      success: false,
+      data: undefined,
+      status: axiosError.response?.status || 0,
+    };
+  }
+}
 
 }

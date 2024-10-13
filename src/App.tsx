@@ -6,6 +6,7 @@ import RegisterForm from "./register/registerForm";
 import Quiz from "./quiz/Quiz";
 import CourseList from "./components/CourseList/CourseList";
 import GamePage from "./game_main/gamePage";
+import Leaderboard from "./components/Leaderboard";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         />
         <Route path="/courses" element={<CourseList />} />
         <Route path="/game" element={<GamePage />} />
+        <Route path="/board" element={<Leaderboard />} />
       </Routes>
     </Router>
   );
