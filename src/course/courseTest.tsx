@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Quiz.css";
 import { useApi } from "../api/ApiProvider";
 import { Answers } from "../api/dto/quiz_dto";
 import { useNavigate } from "react-router-dom";
